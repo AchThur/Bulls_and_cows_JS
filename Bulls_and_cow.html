@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<title> Bulls_and_cows </title>
+	<input id="Nbchoisie"></input>
+	<button id="submit" onclick="check();">Envoyer</button>
+
+	
+	<script>
+	var Nb = genNum();
+	function check()
+	{
+		var inputValue = String(document.getElementById('Nbchoisie').value);
+		var bulls = 0;
+		var cows = 0;
+		if(inputValue.length != Nb.length)
+		{
+			alert("Il faut une nombre a " + String(Nb.length) + " chiffres!!!");
+		}
+		else
+		{
+			for(var i = 0; i < Nb.length; i++)
+			{
+				// Si on a le bon chiffre au bon endroit
+				if(Nb[i] == inputValue[i])
+				{
+					bulls++;
+				}
+				else
+				{
+					for(var j = 0; j < 4; j++)
+					{
+						if(i != j && Nb[i] == inputValue[j])
+						{
+							cows++;
+						}
+					}
+				}
+			}
+		}
+		
+		if(bulls == Nb.length)
+		{
+			alert("Vous avez gagner omgey!!!");
+			location = location;
+		}
+		else
+		{
+			alert("Vous avez " + bulls + " bulls");
+			alert("Vous avez " + cows + " cows");
+		}
+	}
+
+	function genNum()
+	{
+		var Nb = String(Math.round(Math.random() * (9999 - 1000) + 1000));
+		return Nb;
+	}
+</script>
+
